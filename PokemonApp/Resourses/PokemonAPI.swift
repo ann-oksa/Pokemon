@@ -9,6 +9,10 @@ import Foundation
 
 class PokeAPI {
     
+    static let shared = PokeAPI()
+    private init() {
+    }
+    
     private let baseURL = URL(string: "https://pokeapi.co/api/v2/")!
     
     func fetchPokemon(limit: Int = 100, offset: Int = 0, completion: @escaping (Result<[PokemonListItem], Error>) -> Void) {
