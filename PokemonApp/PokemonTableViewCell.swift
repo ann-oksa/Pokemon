@@ -26,7 +26,7 @@ class PokemonTableViewCell: UITableViewCell {
     func configure(with pokemon: PokemonListItem) {
         idLabel.text = "ID: \(pokemon.url)"
         nameLabel.text = pokemon.name
-        
+        pokemonImageView.image = UIImage(named: "ball")
         // Load sprite image asynchronously
         //        DispatchQueue.global().async {
         //            if let imageUrl = URL(string: pokemon.image) {

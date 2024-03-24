@@ -28,7 +28,7 @@ class PokemonDetailViewController: UIViewController {
             guard let pokemonDetail = pokemon else {
                 return
             }
-        
+        spriteImageView.image = UIImage(named: "logo.svg")
             idLabel.text = "ID: \(pokemonDetail.id)"
             nameLabel.text = "Name: \(pokemonDetail.name)"
             weightLabel.text = "Weight: \(pokemonDetail.weight)"
