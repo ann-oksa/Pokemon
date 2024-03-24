@@ -79,8 +79,21 @@ extension ViewController: UITableViewDataSource {
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedPokemon = pokemonList[indexPath.row]
-        // Navigate to detail screen or perform desired action for the selected Pokemon
         print("Selected Pokemon: \(selectedPokemon.name)")
+        PokeAPI.shared.fetchPokemonDetail(pokemonUrl: selectedPokemon.url) { [weak self] result in
+            guard let self = self else { return }
+
+            switch result {
+            case .success(let pokemonDetail):
+                print("Pokemon Detail: \(pokemonDetail)")
+                if let pokemonDetailVC = self.storyboard?.instantiateViewController(withIdentifier: "PokemonDetailViewController") as? PokemonDetailViewController {
+                    pokemonDetailVC.pokemon = pokemonDetail
+                    self.navigationController?.pushViewController(pokemonDetailVC, animated: true)
+                }
+            case .failure(let error):
+                print("Error fetching Pokemon detail: \(error)")
+            }
+        }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

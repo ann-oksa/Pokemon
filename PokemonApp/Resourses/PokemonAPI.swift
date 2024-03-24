@@ -89,6 +89,39 @@ class PokeAPI {
             }
         }.resume()
     }
+    
+    func fetchPokemonDetail(pokemonUrl: String, completion: @escaping (Result<PokemonDetail, Error>) -> Void) {
+        let urlString = pokemonUrl
+        guard let url = URL(string: urlString) else {
+            completion(.failure(APIError.invalidURL))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                completion(.failure(APIError.invalidResponse))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(APIError.noData))
+                return
+            }
+            
+            do {
+                let pokemonDetail = try JSONDecoder().decode(PokemonDetail.self, from: data)
+                completion(.success(pokemonDetail))
+            } catch {
+                completion(.failure(error))
+            }
+        }.resume()
+    }
+
     // TODO: without pagination
     //    // Fetch a list of Pokemon with pagination
     //    func fetchPokemonList(offset: Int, limit: Int, completion: @escaping (Result<[PokemonListItem], Error>) -> Void) {
