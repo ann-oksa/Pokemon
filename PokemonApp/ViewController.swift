@@ -22,8 +22,8 @@ class ViewController: UIViewController {
     private func setupUI() {
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "PokemonCell")
-        
+        tableView.register(UINib(nibName: "PokemonTableViewCell", bundle: nil), forCellReuseIdentifier: "PokemonCell")
+        //        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "PokemonCell")
     }
     
     private func fetchPokemonData() {
@@ -48,9 +48,10 @@ extension ViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonCell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonCell", for: indexPath) as? PokemonTableViewCell else { return UITableViewCell()}
         let pokemon = pokemonList[indexPath.row]
-        cell.textLabel?.text = pokemon.name
+        cell.configure(with: pokemon)
+//        cell.textLabel?.text = pokemon.name
         return cell
     }
 }
