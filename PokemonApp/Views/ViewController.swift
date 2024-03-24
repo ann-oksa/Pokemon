@@ -10,7 +10,7 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet private weak var searchBar: UISearchBar!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
     
     private var pokemonList: [PokemonListItem] = []
     private var filteredPokemon: [PokemonListItem] = []
@@ -19,7 +19,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.title = "Pokemons"
         setupUI()
         fetchPokemonData()
     }
@@ -49,6 +48,7 @@ class ViewController: UIViewController {
             }
         }
     }
+    
     private func fetchNextPage() {
         guard !isLoadingData else { return }
         isLoadingData = true

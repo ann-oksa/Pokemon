@@ -7,15 +7,6 @@
 
 import Foundation
 
-//struct PokemonDetail: Codable {
-//    let name: String
-//    let image: String?
-//    let id: Int
-//    let weight: Double
-//    let height: Double
-//    let type: String
-//    let stats: String
-//}
 // MARK: - Pokemon
 struct PokemonDetail: Codable {
     let id: Int
@@ -27,27 +18,15 @@ struct PokemonDetail: Codable {
 
     let forms: [Species]
     let species: Species
-    let sprites: Sprites
     
     enum CodingKeys: String, CodingKey {
-        case id, name, height, weight, types, stats, forms, species, sprites
+        case id, name, height, weight, types, stats, forms, species
     }
 }
 
 struct Species: Codable {
     let name: String
     let url: String
-}
-
-class Sprites: Codable {
-//    let backDefault: String
-//    let backFemale: String?
-//    let backShiny: String
-//    let backShinyFemale: String?
-//    let frontDefault: String
-//    let frontFemale: String?
-//    let frontShiny: String
-//    let frontShinyFemale: String?
 }
 
 struct Stat: Codable {
