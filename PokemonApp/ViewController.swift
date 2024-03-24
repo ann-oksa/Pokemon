@@ -9,9 +9,11 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
     private var pokemonList: [PokemonListItem] = []
+    private var filteredPokemon: [PokemonListItem] = []
     private var isLoadingData = false
     private var currentPage = 0
     
@@ -26,6 +28,11 @@ class ViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: "PokemonTableViewCell", bundle: nil), forCellReuseIdentifier: "PokemonCell")
+        searchBar.delegate = self
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
     
     private func fetchPokemonData() {
@@ -42,7 +49,7 @@ class ViewController: UIViewController {
             }
         }
     }
-   private func fetchNextPage() {
+    private func fetchNextPage() {
         guard !isLoadingData else { return }
         isLoadingData = true
         currentPage += 1
@@ -61,15 +68,27 @@ class ViewController: UIViewController {
         }
     }
 }
+
+extension ViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filteredPokemon = searchText.isEmpty ? pokemonList : pokemonList.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+        tableView.reloadData()
+    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+}
+
 // MARK: - UITableViewDataSource
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard filteredPokemon.isEmpty else { return filteredPokemon.count }
         return pokemonList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonCell", for: indexPath) as? PokemonTableViewCell else { return UITableViewCell()}
-        let pokemon = pokemonList[indexPath.row]
+        let pokemon = filteredPokemon.isEmpty ? pokemonList[indexPath.row] : filteredPokemon[indexPath.row]
         cell.configure(with: pokemon)
         return cell
     }
