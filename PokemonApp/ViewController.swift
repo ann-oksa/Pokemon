@@ -82,16 +82,17 @@ extension ViewController: UITableViewDelegate {
         print("Selected Pokemon: \(selectedPokemon.name)")
         PokeAPI.shared.fetchPokemonDetail(pokemonUrl: selectedPokemon.url) { [weak self] result in
             guard let self = self else { return }
-
-            switch result {
-            case .success(let pokemonDetail):
-                print("Pokemon Detail: \(pokemonDetail)")
-                if let pokemonDetailVC = self.storyboard?.instantiateViewController(withIdentifier: "PokemonDetailViewController") as? PokemonDetailViewController {
-                    pokemonDetailVC.pokemon = pokemonDetail
-                    self.navigationController?.pushViewController(pokemonDetailVC, animated: true)
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let pokemonDetail):
+                    print("Pokemon Detail: \(pokemonDetail)")
+                    if let pokemonDetailVC = self.storyboard?.instantiateViewController(withIdentifier: "PokemonDetailViewController") as? PokemonDetailViewController {
+                        pokemonDetailVC.pokemon = pokemonDetail
+                        self.navigationController?.pushViewController(pokemonDetailVC, animated: true)
+                    }
+                case .failure(let error):
+                    print("Error fetching Pokemon detail: \(error)")
                 }
-            case .failure(let error):
-                print("Error fetching Pokemon detail: \(error)")
             }
         }
     }
