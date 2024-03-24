@@ -21,7 +21,7 @@ struct PokemonDetail: Codable {
 struct PokemonList: Codable {
     let count: Int
     let nextOffset: Int?
-    let previous: JSONNull?
+    let previous: String?
     let results: [PokemonListItem]
 }
 

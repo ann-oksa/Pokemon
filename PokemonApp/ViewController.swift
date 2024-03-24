@@ -12,18 +12,20 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     private var pokemonList: [PokemonListItem] = []
+    private var isLoadingData = false
+    private var currentPage = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       setupUI()
+        setupUI()
         fetchPokemonData()
     }
+    
     private func setupUI() {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: "PokemonTableViewCell", bundle: nil), forCellReuseIdentifier: "PokemonCell")
-        //        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "PokemonCell")
     }
     
     private func fetchPokemonData() {
@@ -40,6 +42,24 @@ class ViewController: UIViewController {
             }
         }
     }
+   private func fetchNextPage() {
+        guard !isLoadingData else { return }
+        isLoadingData = true
+        currentPage += 1
+        
+        PokeAPI.shared.fetchPokemon(limit: 20, offset: currentPage * 20) { result in
+            switch result {
+            case .success(let pokemonList):
+                self.pokemonList.append(contentsOf: pokemonList)
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            case .failure(let error):
+                print("Error fetching Pokemon data: \(error)")
+            }
+            self.isLoadingData = false
+        }
+    }
 }
 // MARK: - UITableViewDataSource
 extension ViewController: UITableViewDataSource {
@@ -51,7 +71,6 @@ extension ViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonCell", for: indexPath) as? PokemonTableViewCell else { return UITableViewCell()}
         let pokemon = pokemonList[indexPath.row]
         cell.configure(with: pokemon)
-//        cell.textLabel?.text = pokemon.name
         return cell
     }
 }
@@ -62,5 +81,16 @@ extension ViewController: UITableViewDelegate {
         let selectedPokemon = pokemonList[indexPath.row]
         // Navigate to detail screen or perform desired action for the selected Pokemon
         print("Selected Pokemon: \(selectedPokemon.name)")
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let screenHeight = scrollView.frame.size.height
+        
+        if offsetY > contentHeight - screenHeight {
+            // Reached bottom of table view, load next page
+            fetchNextPage()
+        }
     }
 }
