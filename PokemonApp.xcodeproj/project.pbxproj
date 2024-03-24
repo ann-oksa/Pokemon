@@ -93,13 +93,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		04C3F2D62BB0B5BC00030F03 /* pokemonCell */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = pokemonCell;
-			sourceTree = "<group>";
-		};
 		04D845582BB08A0B008012AC = {
 			isa = PBXGroup;
 			children = (
@@ -126,7 +119,6 @@
 				04D845642BB08A0B008012AC /* AppDelegate.swift */,
 				04D845662BB08A0B008012AC /* SceneDelegate.swift */,
 				04C3F2D52BB0B59800030F03 /* Views */,
-				04C3F2D62BB0B5BC00030F03 /* pokemonCell */,
 				04D845942BB08CE2008012AC /* Resourses */,
 				04D8456A2BB08A0B008012AC /* Main.storyboard */,
 				04D8456D2BB08A0D008012AC /* Assets.xcassets */,

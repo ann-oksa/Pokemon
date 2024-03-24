@@ -87,9 +87,10 @@ extension ViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonCell", for: indexPath) as? PokemonTableViewCell else { return UITableViewCell()}
-        let pokemon = filteredPokemon.isEmpty ? pokemonList[indexPath.row] : filteredPokemon[indexPath.row]
-        cell.configure(with: pokemon)
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonCell", for: indexPath) as? PokemonTableViewCell else { return UITableViewCell()}
+        let cell = UITableViewCell()
+//        let pokemon = filteredPokemon.isEmpty ? pokemonList[indexPath.row] : filteredPokemon[indexPath.row]
+//        cell.configure(with: pokemon)
         return cell
     }
 }
