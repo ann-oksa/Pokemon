@@ -8,32 +8,33 @@
 import UIKit
 
 class PokemonDetailViewController: UIViewController {
+    @IBOutlet private weak var spriteImageView: UIImageView!
+        @IBOutlet private weak var idLabel: UILabel!
+        @IBOutlet private weak var nameLabel: UILabel!
+        @IBOutlet private weak var weightLabel: UILabel!
+        @IBOutlet private weak var heightLabel: UILabel!
+        @IBOutlet private weak var typeLabel: UILabel!
+        @IBOutlet private weak var statsLabel: UILabel!
 
     var pokemon: PokemonDetail?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-      setupUI()
+        configureUI()
     }
     
-    private func setupUI() {
-        if let pokemon = pokemon {
-            print(pokemon.height, pokemon.name)
-//                    nameLabel.text = pokemon.name
-//                    idLabel.text = "ID: \(pokemon.id)"
-//                    // Load sprite image asynchronously
-//                    DispatchQueue.global().async {
-//                        if let imageUrl = URL(string: pokemon.spriteImageUrl),
-//                           let data = try? Data(contentsOf: imageUrl),
-//                           let image = UIImage(data: data) {
-//                            DispatchQueue.main.async {
-//                                self.spriteImageView.image = image
-//                            }
-//                        }
-//                    }
-//                    // Add more code to update additional details
-                }
-    }
+    private func configureUI() {
+            guard let pokemonDetail = pokemon else {
+                return
+            }
+        
+            idLabel.text = "ID: \(pokemonDetail.id)"
+            nameLabel.text = "Name: \(pokemonDetail.name)"
+            weightLabel.text = "Weight: \(pokemonDetail.weight)"
+            heightLabel.text = "Height: \(pokemonDetail.height)"
+            typeLabel.text = "Type: \(pokemonDetail.types.map { $0.type.name }.joined(separator: ", "))"
+            statsLabel.text = "Stats: \(pokemonDetail.stats.map { "\($0.stat.name): \($0.baseStat)" }.joined(separator: ", "))"
+        }
 
 }

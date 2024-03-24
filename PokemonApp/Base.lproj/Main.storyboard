@@ -46,9 +46,76 @@
                     <view key="view" contentMode="scaleToFill" id="rad-BW-9MN">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="q9P-EC-XRT">
+                                <rect key="frame" x="16" y="109" width="361" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="shy-BB-cOf"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="TaX-Rj-sAq">
+                                <rect key="frame" x="16" y="324" width="361" height="494"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C0n-fI-Pcc">
+                                        <rect key="frame" x="0.0" y="0.0" width="361" height="71.333333333333329"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rWE-PD-pj4">
+                                        <rect key="frame" x="0.0" y="76.333333333333314" width="361" height="71.666666666666686"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NQ8-b0-wKI">
+                                        <rect key="frame" x="0.0" y="153" width="361" height="71.333333333333314"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OzR-p8-bq7">
+                                        <rect key="frame" x="0.0" y="229.3333333333334" width="361" height="71.333333333333343"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bly-82-12Q">
+                                        <rect key="frame" x="0.0" y="305.66666666666663" width="361" height="71.666666666666686"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u4C-RF-Ob0">
+                                        <rect key="frame" x="0.0" y="382.33333333333337" width="361" height="111.66666666666669"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Fy5-Mv-hZT"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Fy5-Mv-hZT" firstAttribute="trailing" secondItem="TaX-Rj-sAq" secondAttribute="trailing" constant="16" id="7TT-Ns-lyU"/>
+                            <constraint firstItem="q9P-EC-XRT" firstAttribute="leading" secondItem="Fy5-Mv-hZT" secondAttribute="leading" constant="16" id="Din-Xr-fYM"/>
+                            <constraint firstItem="TaX-Rj-sAq" firstAttribute="top" secondItem="q9P-EC-XRT" secondAttribute="bottom" constant="15" id="Hha-GI-Yfa"/>
+                            <constraint firstItem="Fy5-Mv-hZT" firstAttribute="trailing" secondItem="q9P-EC-XRT" secondAttribute="trailing" constant="16" id="Ocs-t0-cSk"/>
+                            <constraint firstItem="q9P-EC-XRT" firstAttribute="top" secondItem="Fy5-Mv-hZT" secondAttribute="top" constant="50" id="hLs-H6-nbM"/>
+                            <constraint firstItem="TaX-Rj-sAq" firstAttribute="leading" secondItem="Fy5-Mv-hZT" secondAttribute="leading" constant="16" id="ji7-dC-T2E"/>
+                            <constraint firstItem="Fy5-Mv-hZT" firstAttribute="bottom" secondItem="TaX-Rj-sAq" secondAttribute="bottom" id="xvX-rY-wfb"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="heightLabel" destination="OzR-p8-bq7" id="ZLH-aY-fri"/>
+                        <outlet property="idLabel" destination="C0n-fI-Pcc" id="Lro-pv-cag"/>
+                        <outlet property="nameLabel" destination="rWE-PD-pj4" id="IvK-us-gWy"/>
+                        <outlet property="spriteImageView" destination="q9P-EC-XRT" id="lBR-a3-7gs"/>
+                        <outlet property="statsLabel" destination="u4C-RF-Ob0" id="3Pb-w0-d0f"/>
+                        <outlet property="typeLabel" destination="Bly-82-12Q" id="71S-C6-ZDM"/>
+                        <outlet property="weightLabel" destination="NQ8-b0-wKI" id="T9A-LU-uak"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uqx-vQ-fHL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
